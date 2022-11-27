@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 #include "connect4.h"
 using namespace std;
-//討論同學: b09902055、b09902016、b09902073
+
 int table[7][6], high[7], score[7], delta[5] = {0, 0, 4000, 9000, 0}, up = 1e9, down = -1e9;
 
-void add(int column, int color){//1: 自己; 2: 對手
+void add(int column, int color){ //1: self; 2: rival
     table[column][high[column]] = color;
     high[column]++;
 }
@@ -18,7 +18,7 @@ int scoring(){
     int totall = 0;
     for(int i = 0;i < 7;i++){
         for(int j = 0;j < 6;j++){
-            if(i <= 3){//右
+            if(i <= 3){ // right
                 int red = 0, yellow = 0, blank = 0;
                 for(int x = 0;x <= 3;x++){
                     if(table[i+x][j] == 1)  red++;
@@ -36,7 +36,7 @@ int scoring(){
                     }
                 }
             }
-            if(j <= 2){//上
+            if(j <= 2){ // up
                 int red = 0, yellow = 0, blank = 0;
                 for(int x = 0;x <= 3;x++){
                     if(table[i][j+x] == 1)  red++;
@@ -54,7 +54,7 @@ int scoring(){
                     }
                 }
             }
-            if(i<=3 && j<=2){//右上
+            if(i<=3 && j<=2){ // upper right
                 int red = 0, yellow = 0, blank = 0;
                 for(int x = 0;x <= 3;x++){
                     if(table[i+x][j+x] == 1)  red++;
@@ -72,7 +72,7 @@ int scoring(){
                     }
                 }
             }
-            if(i<=3 && j>=3){//右下
+            if(i<=3 && j>=3){ // lower right
                 int red = 0, yellow = 0, blank = 0;
                 for(int x = 0;x <= 3;x++){
                     if(table[i+x][j-x] == 1)  red++;
